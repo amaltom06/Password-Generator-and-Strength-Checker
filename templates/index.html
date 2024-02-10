@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Operations</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .operation-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #222;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width:800px;
+            height:350px;
+        }
+
+        .password-section {
+            flex: 1;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #ff1744;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid #ff1744;
+            background-color: #111;
+            color: #fff;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff1744;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3d67;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 24px;
+            text-align: center;
+            color: #ff1744;
+        }
+
+        p.success {
+            color: #28a745;
+        }
+
+        p.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+  &nbsp;&nbsp;&nbsp;&nbsp;  <div>
+    <h1 style="color: #ff1744; text-align: center; font-size: 30px; text-transform: uppercase; letter-spacing: 3px; line-height: 1.2;">
+        password generator<br>and<br>password strength checker
+    </h1>
+</div>
+    <div class="operation-container">
+        <div class="password-section">
+            <h1>Generate Password </h1>
+            <form id="generateForm">
+                <label for="length">Password Length:</label>
+                <input type="number" id="length" name="length" min="8" value="12"><br><br>
+                <button type="button" onclick="generatePassword()">Generate Password</button>
+            </form>
+            <p id="generatedPassword"></p>
+        </div>
+
+        <div class="password-section">
+            <h1>Check Srength</h1>
+            <form id="checkForm">
+                <label for="passwordToCheck">Enter your password:</label>
+                <input type="password" id="passwordToCheck" name="passwordToCheck" required><br><br>
+                <button type="button" onclick="checkPasswordStrength()">Check Password Strength</button>
+            </form>
+            <p id="passwordStrengthResult"></p>
+        </div>
+    </div>
+
+    <script>
+        async function generatePassword() {
+            const length = document.getElementById('length').value;
+            const response = await fetch(`/generate-password?length=${length}`);
+            const data = await response.json();
+            document.getElementById('generatedPassword').textContent = data.password;
+        }
+
+        async function checkPasswordStrength() {
+            const passwordToCheck = document.getElementById('passwordToCheck').value;
+            const response = await fetch(`/check-password?password=${passwordToCheck}`);
+            const data = await response.json();
+            document.getElementById('passwordStrengthResult').textContent = data.result;
+        }
+    </script>
+
+</body>
+</html>
