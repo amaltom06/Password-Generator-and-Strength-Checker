@@ -1,0 +1,34 @@
+Project Overview:
+This project is a simple password generator and password strength checker implemented using Flask for the backend and HTML with inline CSS for the frontend.
+
+Files:
+app.py: This is the main Python script implementing the Flask web application. It has two main functions - generate_password and check_password_strength.
+index.html: This HTML file contains the structure and styling for the web page. It includes two sections for generating a password and checking password strength.
+
+Project Structure:
+The web page has two main sections, each enclosed in a div with the class password-section. These sections are responsible for generating passwords and checking password strength.
+The styling is done using CSS to make the page visually appealing, with a gaming-style appearance.
+The Flask app (app.py) has three routes: /, /generate-password, and /check-password. The root route (/) renders the HTML page, and the other two routes handle the generation of passwords and checking password strength, respectively.
+
+How to Run:
+
+Install Flask:
+pip install Flask
+
+Run the Flask App:
+python app.py
+
+Access the Web Page:
+Open your web browser and go to http://127.0.0.1:5000/.
+
+Interact with the Page:
+
+The main page displays two sections: "Generate Password" and "Check Strength".
+In the "Generate Password" section, enter the desired password length and click the "Generate Password" button.
+In the "Check Strength" section, enter a password and click the "Check Password Strength" button.
+
+View Results:
+
+The generated password will be displayed in the "Generated Password" section.
+The result of password strength checking will be displayed in the "Check Strength" section.
+That's it! You have successfully run and interacted with the password generator and strength checker web application.
